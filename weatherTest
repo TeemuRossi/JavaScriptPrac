@@ -1,0 +1,267 @@
+<HTML>
+
+<style type="text/css">
+
+
+
+    body{
+
+    font-family: Trebuchet MS;
+
+    }
+
+        table {
+
+            border-collapse: collapse;
+
+            width: 700px;
+
+            border: 1px solid black;
+
+        }
+
+        th, td {
+
+            padding: 4px;
+
+            font-family: Verdana;
+
+            font-size: 12px;
+
+        }
+
+        tr:nth-child(even) {
+
+            background-color: #f2f2f2
+
+        }
+
+        th, td {
+
+            border: 1px solid #ddd;
+
+        }
+
+        td {
+
+            height: 40px;
+
+            text-align: center;
+
+            vertical-align: middle;
+
+        }
+
+        img {
+
+            width: 100px;
+
+        }
+
+        #img2{
+
+          width: 50;
+
+        }
+
+    </style>
+
+
+
+</style>
+
+<script>
+
+
+function weatherNow(){
+
+
+
+var url = "http://api.openweathermap.org/data/2.5/weather?q=Helsinki%0B&units=metric&mode=JSON&APPID=ff64c247a136f706923d1ee0d55d71e2";
+
+
+
+var xmlhttp=new XMLHttpRequest();
+
+xmlhttp.open("GET",url,true);
+
+xmlhttp.send();
+
+
+
+xmlhttp.onreadystatechange = function(){
+
+  if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
+
+    jsonObj = JSON.parse(xmlhttp.responseText);
+
+    var city= jsonObj.name;
+
+    var temp=jsonObj.main.temp;
+
+    var cloud=jsonObj.clouds.all;
+
+    var humidity=jsonObj.main.humidity;
+
+    var icon='<img src="http://openweathermap.org/img/w/' + jsonObj.weather[0].icon + '.png"id="img2"/>'
+
+    var weatherInfo="<table>"+"<tr>"+"<td>"+"City" + "</td>"+"<td>"+"Temperature (Celcius)" + "</td>"+"<td>"+"Cloudiness-%" + "</td>"+"<td>"+"Humidity-%" + "</td>"+"</tr>";
+
+    weatherInfo+="<tr>"+"<td>"+city+"</td>"+"<td>"+temp+"</td>"+"<td>"+cloud+"</td>"+"<td>"+humidity+"</td>"+"<td>"+icon+"</td>"+"</tr>"
+
+    weatherInfo+="</table>"
+
+    document.getElementById("weatherdata").innerHTML= weatherInfo;
+
+
+
+
+
+
+
+  }
+
+}
+
+
+
+}
+
+
+
+function weatherCity(){
+
+  var x = document.getElementById("city").value;
+
+
+
+  var url = "http://api.openweathermap.org/data/2.5/weather?q=" + x + "&units=metric&mode=XML&APPID=ff64c247a136f706923d1ee0d55d71e2";
+
+
+
+  var xmlhttp=new XMLHttpRequest();
+
+  xmlhttp.open("GET",url,true);
+
+  xmlhttp.send();
+
+
+
+  xmlhttp.onreadystatechange = function(){
+
+    if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
+
+      jsonObj = JSON.parse(xmlhttp.responseText);
+
+      var city= jsonObj.name;
+
+      var temp=jsonObj.main.temp;
+
+      var cloud=jsonObj.clouds.all;
+
+      var humidity=jsonObj.main.humidity;
+
+      var icon='<img src="http://openweathermap.org/img/w/' + jsonObj.weather[0].icon + '.png"id="img2"/>'
+
+      var weatherInfo="<table>"+"<tr>"+"<td>"+"City" + "</td>"+"<td>"+"Temperature (Celcius)" + "</td>"+"<td>"+"Cloudiness-%" + "</td>"+"<td>"+"Humidity-%" + "</td>"+"</tr>";
+
+      weatherInfo+="<tr>"+"<td>"+city+"</td>"+"<td>"+temp+"</td>"+"<td>"+cloud+"</td>"+"<td>"+humidity+"</td>"+"<td>"+icon+"</td>"+"</tr>"
+
+      weatherInfo+="</table>"
+
+      document.getElementById("weatherdata").innerHTML= weatherInfo;
+
+    }
+
+
+  }
+
+}
+
+
+
+function searchWeather(){
+
+  var x = document.getElementById("citysearch").value;
+
+
+
+  var url ="http://api.openweathermap.org/data/2.5/weather?q=" + x + "&units=metric&mode=XML&APPID=ff64c247a136f706923d1ee0d55d71e2";
+
+
+
+  var xmlhttp=new XMLHttpRequest();
+
+  xmlhttp.open("GET",url,true);
+
+  xmlhttp.send();
+
+
+
+  xmlhttp.onreadystatechange = function(){
+
+    if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
+
+      jsonObj = JSON.parse(xmlhttp.responseText);
+
+      var city= jsonObj.name;
+
+      var temp=jsonObj.main.temp;
+
+      var cloud=jsonObj.clouds.all;
+
+      var humidity=jsonObj.main.humidity;
+
+      var icon='<img src="http://openweathermap.org/img/w/' + jsonObj.weather[0].icon + '.png"id="img2"/>'
+
+      var weatherInfo="<table>"+"<tr>"+"<td>"+"City" + "</td>"+"<td>"+"Temperature (Celcius)" + "</td>"+"<td>"+"Cloudiness-%" + "</td>"+"<td>"+"Humidity-%" + "</td>"+"</tr>";
+
+      weatherInfo+="<tr>"+"<td>"+city+"</td>"+"<td>"+temp+"</td>"+"<td>"+cloud+"</td>"+"<td>"+humidity+"</td>"+"<td>"+icon+"</td>"+"</tr>"
+
+      weatherInfo+="</table>"
+
+      document.getElementById("weatherdata").innerHTML= weatherInfo;
+
+    }
+
+  }
+
+}
+
+
+
+
+
+</script>
+
+  <p>Select a city from the list:
+
+  <select name="mySelect" id="city" onchange="weatherCity()">
+
+    <option value="Helsinki">Helsinki</option>
+
+    <option value="Stockholm">Stockholm</option>
+
+    <option value="Rome">Rome</option>
+
+    <option value="New York">New York</option>
+
+  </select>
+
+<br/>
+
+Or type in a search query: <input id="citysearch"></input><button id="search" onclick="searchWeather()">Search</button>
+
+<div id="weatherdata">Weatherdata goes here.</div>
+
+
+
+  <br>
+
+  <br>
+
+
+
+</body>
+
+</html>
