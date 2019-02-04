@@ -1,0 +1,76 @@
+
+* {
+  font-family: "Dubai"
+}
+
+h1 {
+  text-align: center;
+}
+
+body {
+  background-color: #3a9bfc;
+
+}
+
+h2 {
+  text-align: center;
+}
+
+
+
+
+
+#loading {
+  text-align: center;
+}
+.full {
+  min-width: 100%;
+  width: 100%;
+  max-width: 100%;
+}
+
+.fa {
+  display: inline-block;
+}
+
+.jumbotron {
+  background: none;
+}
+
+.taulut {
+  margin-top: 20px;
+}
+.fixed-bottom{
+  position: fixed;
+  background-color: rgba(46,49,49,0.7);
+  color: white;
+}
+
+tr {
+  text-align: center;
+  font-size: 20px;
+  background-color: #2980b9;
+}
+
+table {
+  background-color: #3498db;
+
+}
+
+
+tr:nth-child(2n+0) {
+  background-color: #3498db;
+}
+
+th {
+  background-color: #3498db;
+}
+
+tr {
+  border-bottom: 1px solid #ddd !important;
+}
+
+button {
+  margin-bottom: 40px;
+
+}
